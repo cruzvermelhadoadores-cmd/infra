@@ -8,8 +8,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.get('/', {
-    
+app.get('/health', (req, res) => {
+    res.json({ status: 'ok' });
 })
 
 app.post('/proxy', async (req, res) => {
