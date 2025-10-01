@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
 
-require('dotenv').config();
+require('dotenv').config({ override: true });
 
 const app = express();
 app.use(express.json());
