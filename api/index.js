@@ -12,6 +12,20 @@ app.get('/health', (req, res) => {
     res.json({ status: 'ok' });
 })
 
+app.post('/api/proxy', async (req, res) => {
+  try {
+    const { action, ...data } = req.body;
+    const backendUrl = process.env.BACKEND_URL
+    const response = await axios.post(backendUrl, {
+      action,
+      ...data
+    });
+    res.json(response.data);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 app.post('/proxy', async (req, res) => {
   try {
     const { action, ...data } = req.body;
